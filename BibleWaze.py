@@ -34,23 +34,14 @@ st.markdown(
 livros = tabela["livro"].dropna().astype(str).str.strip()
 livros = sorted(livros[livros.ne("")].unique(), key=str.casefold)
 livro = st.selectbox("Livro *", ["Selecione o livro"] + livros, key="livro")
-
 if livro == "Selecione o livro":
     st.info("Selecione um livro para continuar.")
     st.stop()
-
 registro = tabela.loc[tabela["livro"] == livro].iloc[0]
 escritura = registro["escritura"]
 linha = registro["linha"]
 coluna = registro["coluna"]
-
 st.markdown(f"### Livro: {livro}")
 st.markdown(f"### Escritura: {escritura}")
 st.markdown(f"### Linha: {linha}")
-st.markdown(f"### Coluna: {coluna}")
-
-
-
-
-
-    
+st.markdown(f"### Coluna: {coluna}")   
