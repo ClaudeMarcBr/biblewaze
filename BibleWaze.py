@@ -42,6 +42,6 @@ escritura = registro["escritura"]
 linha = registro["linha"]
 coluna = registro["coluna"]
 st.markdown(f"### Livro: {livro}")
-st.markdown(f"### Escrituras: {escritura}")
+st.markdown(f"### Escritura: {escritura}")
 st.markdown(f"### Linha: {linha}")
-st.markdown(f"### Coluna: {coluna}")   
+st.markdown(f"### Coluna: {coluna}")>>>>>>> e64547d (Publica aplicativo BibleWaze)
