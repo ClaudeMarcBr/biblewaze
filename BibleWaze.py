@@ -13,9 +13,7 @@ import os
 import streamlit as st
 # carregar comandos do Pandas para manipulação de dados
 import pandas as pd
-# carregar comandos do Plotly para gráficos
-import plotly.express as px
-# carregar a localidade brasileira para ordenação correta de strings
+# carregar comandos do locale para manipulação de localidade
 import locale
 # configurar o jogo de caracteres para português do Brasil
 try:
@@ -24,6 +22,7 @@ except locale.Error:
     locale.setlocale(locale.LC_COLLATE, "C")
 #STEP 2 Definir a tabela de dados
 tabela = pd.read_csv("biblewaze.csv", sep=";", encoding="utf-8-sig")
+tabela = tabela.sort_values(by="livro", ascending=True)
 #STEP 3 Definir tela de interface do usuário
 st.write("## Sistema de localização dos livros da Bíblia no aplicativo JW Bible ")
 st.markdown(
@@ -32,16 +31,17 @@ st.markdown(
 )
 #abrir a lista para seleção do livro
 livros = tabela["livro"].dropna().astype(str).str.strip()
+
 livros = sorted(livros[livros.ne("")].unique(), key=str.casefold)
 livro = st.selectbox("Livro *", ["Selecione o livro"] + livros, key="livro")
 if livro == "Selecione o livro":
     st.info("Selecione um livro para continuar.")
     st.stop()
-registro = tabela.loc[tabela["livro"] == livro].iloc[0]
+registro = tabela.loc[tabela["livro"] == livro].iloc[0] #define o registro do livro selecionado
 escritura = registro["escritura"]
 linha = registro["linha"]
 coluna = registro["coluna"]
 st.markdown(f"### Livro: {livro}")
-st.markdown(f"### Escritura: {escritura}")
+st.markdown(f"### Escrituras: {escritura}")
 st.markdown(f"### Linha: {linha}")
 st.markdown(f"### Coluna: {coluna}")>>>>>>> e64547d (Publica aplicativo BibleWaze)
