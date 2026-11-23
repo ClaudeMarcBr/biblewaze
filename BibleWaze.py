@@ -41,7 +41,10 @@ registro = tabela.loc[tabela["livro"] == livro].iloc[0] #define o registro do li
 escritura = registro["escritura"]
 linha = registro["linha"]
 coluna = registro["coluna"]
+link = registro["link"]
 st.markdown(f"### Livro: {livro}")
 st.markdown(f"### Escrituras: {escritura}")
 st.markdown(f"### Linha: {linha}")
 st.markdown(f"### Coluna: {coluna}")
+#propor para abrir o link do livro no site JW.org
+st.link_button("Abrir na JW.org", link, use_container_width=True)
